@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Convite — Sophia 15 Anos</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@300;400;500&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --lilac-pale:#F0EAF8;
+  --lilac-mid:#D8C8EE;
+  --lilac-deep:#BFA8DC;
+  --violet:#7B5CA8;
+  --violet-dark:#5A3A88;
+  --violet-light:#A888C8;
+  --gold:#B8860B;
+  --gold-light:#D4A820;
+  --gold-shimmer:#E8C870;
+  --text-dark:#2A1840;
+  --text-mid:#5A4070;
+  --text-light:#9070A8;
+  --card-bg:#FDFAFF;
+  --border-light:rgba(140,100,180,0.18);
+}
+
+body{
+  background:linear-gradient(150deg,#EAD8F4 0%,#F4EEF9 40%,#EAD8F4 70%,#D8C0EC 100%);
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:2rem 1rem;
+  font-family:'Raleway',sans-serif;
+}
+
+@keyframes sparkle{0%,100%{opacity:0;transform:scale(0) rotate(0deg)}50%{opacity:1;transform:scale(1) rotate(180deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes fadeSlideIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+@keyframes petalDrift{
+  0%{transform:translateY(-20px) rotate(0deg) scale(0.8);opacity:0}
+  8%{opacity:0.9}
+  92%{opacity:0.4}
+  100%{transform:translateY(105vh) rotate(420deg) scale(1.1);opacity:0}
+}
+@keyframes glow{0%,100%{filter:drop-shadow(0 0 4px rgba(201,150,60,0.4))}50%{filter:drop-shadow(0 0 10px rgba(201,150,60,0.7))}}
+
+.sparkles{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.sparkle{
+  position:absolute;
+  width:5px;height:5px;
+  clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  background:var(--gold-shimmer);
+  animation:sparkle var(--dur,3s) var(--del,0s) infinite ease-in-out;
+}
+.petal{position:absolute;font-size:0.75rem;animation:petalDrift var(--dur,10s) var(--del,0s) infinite linear;opacity:0}
+
+.wrapper{width:100%;max-width:500px;position:relative;z-index:1;animation:fadeSlideIn 1s ease both}
+
+/* ── HERO ── */
+.hero{text-align:center;padding:2.8rem 2rem 1.6rem}
+
+.crown-svg{
+  display:block;margin:0 auto 0.7rem;width:72px;
+  animation:float 4s ease-in-out infinite, glow 3s ease-in-out infinite;
+}
+
+.invite-label-top{
+  font-family:'Cinzel',serif;
+  font-size:0.55rem;font-weight:600;
+  letter-spacing:0.35em;text-transform:uppercase;
+  color:#4A2C08;
+  text-shadow:0 1px 8px rgba(255,255,255,0.9);
+  margin-bottom:0.4rem;
+}
+
+.name-sophia{
+  font-family:'Great Vibes',cursive;
+  font-size:5rem;line-height:1;
+  background:linear-gradient(135deg,#5A2880 0%,#C9963C 28%,#7A40A8 52%,#E8C870 72%,#6A3898 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 6s linear infinite;
+  margin-bottom:0.2rem;
+  filter:drop-shadow(0 2px 4px rgba(90,40,128,0.2));
+}
+
+.anos-label{
+  font-family:'Cinzel',serif;
+  font-size:0.8rem;font-weight:600;
+  letter-spacing:0.45em;text-transform:uppercase;
+  color:#4A2C08;
+  text-shadow:0 1px 8px rgba(255,255,255,0.9);
+  margin-bottom:0.7rem;
+}
+
+.presence-line{
+  font-family:'Great Vibes',cursive;
+  font-size:1.3rem;
+  color:#5C3808;
+  text-shadow:0 1px 8px rgba(255,255,255,0.9);
+  margin-bottom:1.2rem;
+}
+
+.divider-ornament{display:flex;align-items:center;justify-content:center;gap:0.7rem;margin-bottom:1.4rem}
+.divider-ornament span{width:55px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.divider-ornament i{font-style:normal;color:var(--gold);font-size:0.5rem;letter-spacing:0.25rem}
+
+/* ── CARD ── */
+.card{
+  background:var(--card-bg);
+  border:1px solid rgba(140,100,180,0.15);
+  border-radius:3px;overflow:hidden;
+  box-shadow:0 16px 60px rgba(50,15,80,0.16),0 4px 12px rgba(50,15,80,0.08);
+  position:relative;
+}
+/* top gold line accent */
+.card::before{
+  content:'';display:block;height:3px;
+  background:linear-gradient(90deg,transparent,var(--gold-light),var(--gold-shimmer),var(--gold-light),transparent);
+}
+
+/* Event info */
+.event-info{padding:1.8rem 2.2rem 1.4rem;border-bottom:1px solid var(--border-light)}
+.info-row{display:flex;align-items:flex-start;gap:1rem;margin-bottom:1.2rem}
+.info-row:last-child{margin-bottom:0}
+.info-icon{
+  width:36px;height:36px;min-width:36px;
+  background:linear-gradient(135deg,rgba(139,106,174,0.12),rgba(139,106,174,0.06));
+  border:1px solid rgba(139,106,174,0.28);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.9rem;
+}
+.info-label{
+  font-family:'Cinzel',serif;
+  font-size:0.52rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:0.15rem;
+}
+.info-value{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;font-weight:400;color:var(--text-dark);line-height:1.4;
+}
+.info-value a{color:var(--text-dark);text-decoration:none;border-bottom:1px dotted var(--violet-light);transition:color .2s}
+.info-value a:hover{color:var(--violet)}
+
+.date-line{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;color:var(--text-dark);font-weight:400;
+}
+.time-line{
+  font-family:'Cinzel',serif;
+  font-size:0.82rem;font-weight:600;color:var(--violet);
+  letter-spacing:0.08em;margin-top:0.25rem;
+}
+
+.map-links{display:flex;gap:0.5rem;margin-top:0.45rem;flex-wrap:wrap}
+.map-btn{
+  display:inline-flex;align-items:center;gap:0.3rem;padding:0.25rem 0.65rem;
+  border:1px solid rgba(139,106,174,0.3);border-radius:20px;
+  font-family:'Raleway',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.06em;
+  color:var(--violet);text-decoration:none;
+  background:rgba(139,106,174,0.06);transition:background .2s,color .2s;
+}
+.map-btn:hover{background:rgba(139,106,174,0.14);color:var(--violet-dark)}
+
+.calendar-link{
+  display:inline-flex;align-items:center;gap:0.3rem;margin-top:0.4rem;
+  font-family:'Raleway',sans-serif;font-size:0.62rem;font-weight:500;letter-spacing:0.06em;
+  color:var(--gold);text-decoration:none;
+  border-bottom:1px dotted rgba(184,134,11,0.4);transition:color .2s;
+}
+.calendar-link:hover{color:var(--violet)}
+
+/* ── DRESS CODE ── */
+.dress-section{padding:1.6rem 2.2rem 1.4rem;border-bottom:1px solid var(--border-light);background:rgba(220,205,242,0.15)}
+
+.dress-header{
+  display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem;
+}
+.dress-title{
+  font-family:'Cinzel',serif;
+  font-size:0.58rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--violet-dark);
+  display:flex;align-items:center;gap:0.5rem;
+}
+.dress-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border-light),transparent);min-width:30px}
+.dress-figures{font-size:1.6rem;line-height:1;flex-shrink:0}
+
+.dress-intro{
+  font-family:'Cormorant Garamond',serif;
+  font-size:0.88rem;font-style:italic;font-weight:300;
+  color:var(--text-mid);line-height:1.65;
+  margin-bottom:1.1rem;
+  padding-left:0.3rem;
+  border-left:2px solid rgba(184,134,11,0.3);
+  padding-left:0.7rem;
+}
+
+.dress-item{
+  font-family:'Raleway',sans-serif;
+  font-size:0.8rem;color:var(--text-dark);line-height:1.55;margin-bottom:0.35rem;font-weight:400;
+}
+.dress-item strong{font-weight:600;color:var(--violet-dark)}
+
+.forbidden-label{
+  font-family:'Cinzel',serif;
+  font-size:0.5rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;
+  color:#8B2020;margin:0.9rem 0 0.5rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.forbidden-label::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(139,32,32,0.2),transparent)}
+
+/* Color swatches */
+.color-swatches{
+  display:flex;align-items:center;gap:0.55rem;
+  margin:0.6rem 0 0.5rem;
+  flex-wrap:wrap;
+}
+.swatch{
+  display:flex;align-items:center;justify-content:center;
+}
+.swatch-circle{
+  width:30px;height:30px;border-radius:50%;
+  border:2px solid rgba(255,255,255,0.7);
+  box-shadow:0 2px 8px rgba(0,0,0,0.22);
+}
+.swatch-note{
+  font-family:'Raleway',sans-serif;
+  font-size:0.72rem;color:var(--text-mid);
+  line-height:1.5;margin-top:0.3rem;font-weight:300;font-style:italic;
+}
+
+.dress-tagline{
+  font-family:'Great Vibes',cursive;
+  font-size:1.35rem;color:var(--violet);
+  margin-top:1rem;line-height:1.3;text-align:center;
+}
+
+/* ── FORM ── */
+.form-section{padding:1.6rem 2.2rem 2.2rem}
+
+.attention-box{
+  background:linear-gradient(135deg,rgba(139,106,174,0.07),rgba(139,106,174,0.04));
+  border:1px solid rgba(139,106,174,0.25);
+  border-radius:3px;padding:0.75rem 1rem;margin-bottom:1.4rem;
+  display:flex;gap:0.6rem;align-items:flex-start;
+}
+.attention-box .att-icon{font-size:0.85rem;margin-top:1px;flex-shrink:0}
+.attention-box p{
+  font-family:'Raleway',sans-serif;
+  font-size:0.7rem;color:var(--text-mid);line-height:1.55;
+}
+.attention-box strong{color:var(--violet);font-weight:600}
+
+.form-title{
+  font-family:'Cinzel',serif;
+  font-size:0.55rem;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--violet);margin-bottom:1.1rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.form-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border-light),transparent)}
+
+.field{margin-bottom:1rem}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1rem}
+
+label{
+  display:block;
+  font-family:'Cinzel',serif;
+  font-size:0.52rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--text-mid);margin-bottom:0.35rem;
+}
+label .req{color:var(--violet);margin-left:2px}
+
+input[type="text"]{
+  width:100%;padding:0.68rem 0.9rem;
+  border:1px solid var(--lilac-mid);border-radius:2px;background:#fff;
+  font-family:'Raleway',sans-serif;font-size:0.88rem;font-weight:300;color:var(--text-dark);
+  transition:border-color .2s,box-shadow .2s;outline:none;
+}
+input[type="text"]:focus{border-color:var(--violet-light);box-shadow:0 0 0 3px rgba(139,106,174,0.1)}
+input.err{border-color:#c0392b}
+.err-msg{font-size:0.67rem;color:#c0392b;margin-top:0.22rem;display:none;font-family:'Raleway',sans-serif}
+
+.submit-btn{
+  width:100%;padding:0.95rem;margin-top:1.2rem;
+  background:linear-gradient(135deg,#5A3888 0%,#8B60B8 40%,#B8860B 70%,#7A4898 100%);
+  background-size:200% auto;
+  color:#fff;border:none;border-radius:2px;
+  font-family:'Cinzel',serif;font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
+  cursor:pointer;
+  transition:background-position .5s,transform .1s,box-shadow .2s;
+  box-shadow:0 6px 24px rgba(90,56,136,0.32);
+}
+.submit-btn:hover{background-position:right center;box-shadow:0 8px 28px rgba(90,56,136,0.42)}
+.submit-btn:active{transform:scale(0.98)}
+
+/* Blocked */
+.blocked-screen{display:none;text-align:center;padding:3rem 2rem}
+.blocked-screen.visible{display:block;animation:fadeSlideIn .5s ease both}
+.blocked-screen h2{font-family:'Great Vibes',cursive;font-size:2.2rem;color:var(--violet);margin-bottom:0.5rem}
+.blocked-screen p{font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:var(--text-mid);line-height:1.6}
+
+/* Success */
+.success-screen{display:none;text-align:center;padding:2.6rem 2rem}
+.success-screen.visible{display:block;animation:fadeSlideIn .5s ease both}
+.success-icon{font-size:2rem;margin-bottom:1rem;animation:float 3s ease-in-out infinite}
+.success-screen h2{font-family:'Great Vibes',cursive;font-size:2.2rem;color:var(--violet);margin-bottom:0.4rem}
+.success-screen .sub{font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-style:italic;font-weight:300;color:var(--text-mid);line-height:1.6;margin-bottom:1.2rem}
+.confirm-detail{background:rgba(216,200,238,0.25);border-radius:2px;padding:1rem 1.2rem;text-align:left;border:1px solid var(--border-light)}
+.confirm-detail p{font-family:'Raleway',sans-serif;font-size:0.78rem;color:var(--text-dark);line-height:1.6;margin-bottom:0.2rem}
+.confirm-detail strong{color:var(--gold);font-weight:600}
+
+/* Footer */
+.card-footer{
+  border-top:1px solid var(--border-light);
+  padding:1rem 2.2rem;text-align:center;
+  font-family:'Cormorant Garamond',serif;font-size:0.72rem;font-style:italic;
+  color:var(--text-light);letter-spacing:0.1em;
+  background:linear-gradient(90deg,transparent,rgba(216,200,238,0.2),transparent);
+}
+
+@media(max-width:440px){
+  .name-sophia{font-size:4rem}
+  .event-info,.form-section,.dress-section{padding-left:1.4rem;padding-right:1.4rem}
+  .hero{padding:2rem 1.4rem 1.2rem}
+  .field-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="sparkles" aria-hidden="true">
+  <div class="sparkle" style="left:7%;top:10%;--dur:2.6s;--del:0s"></div>
+  <div class="sparkle" style="left:93%;top:8%;--dur:3.4s;--del:.6s"></div>
+  <div class="sparkle" style="left:14%;top:76%;--dur:2.8s;--del:1.1s"></div>
+  <div class="sparkle" style="left:86%;top:68%;--dur:3.2s;--del:.3s"></div>
+  <div class="sparkle" style="left:48%;top:4%;--dur:2.4s;--del:.9s"></div>
+  <div class="sparkle" style="left:4%;top:48%;--dur:3.6s;--del:1.6s"></div>
+  <div class="sparkle" style="left:96%;top:42%;--dur:2.9s;--del:.15s"></div>
+  <div class="sparkle" style="left:60%;top:92%;--dur:3.1s;--del:.7s"></div>
+  <div class="petal" style="left:18%;--dur:10s;--del:0s">💜</div>
+  <div class="petal" style="left:52%;--dur:13s;--del:2.5s">✨</div>
+  <div class="petal" style="left:78%;--dur:9s;--del:4.5s">💜</div>
+  <div class="petal" style="left:33%;--dur:14s;--del:1.2s">✨</div>
+  <div class="petal" style="left:68%;--dur:11s;--del:3.3s">💜</div>
+  <div class="petal" style="left:88%;--dur:12s;--del:6s">✨</div>
+</div>
+
+<div class="wrapper">
+  <div class="hero">
+
+    <!-- Coroa SVG delicada -->
+    <svg class="crown-svg" viewBox="0 0 120 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 55 Q60 48 110 55 L105 62 Q60 56 15 62 Z" fill="url(#bandGrad)" opacity="0.9"/>
+      <path d="M10 55 L18 28 L34 45 L60 12 L86 45 L102 28 L110 55" stroke="url(#crownGrad)" stroke-width="2.2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="60" cy="10" r="4.5" fill="url(#gemViolet)" opacity="0.95"/>
+      <circle cx="34" cy="43" r="3" fill="url(#gemGold)" opacity="0.9"/>
+      <circle cx="86" cy="43" r="3" fill="url(#gemGold)" opacity="0.9"/>
+      <circle cx="18" cy="26" r="2.2" fill="#E8C870" opacity="0.8"/>
+      <circle cx="102" cy="26" r="2.2" fill="#E8C870" opacity="0.8"/>
+      <path d="M56.5 6 L57.7 9.8 L61.8 9.8 L58.6 12.1 L59.8 15.9 L56.5 13.6 L53.2 15.9 L54.4 12.1 L51.2 9.8 L55.3 9.8 Z" fill="#fff" opacity="0.7"/>
+      <circle cx="25" cy="59" r="2.8" fill="#C8B0E8" opacity="0.85"/>
+      <circle cx="42" cy="57.5" r="2.8" fill="#C8B0E8" opacity="0.85"/>
+      <circle cx="60" cy="57" r="2.8" fill="#C8B0E8" opacity="0.85"/>
+      <circle cx="78" cy="57.5" r="2.8" fill="#C8B0E8" opacity="0.85"/>
+      <circle cx="95" cy="59" r="2.8" fill="#C8B0E8" opacity="0.85"/>
+      <defs>
+        <linearGradient id="crownGrad" x1="10" y1="12" x2="110" y2="55" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#8050B0"/>
+          <stop offset="35%" stop-color="#E8C870"/>
+          <stop offset="65%" stop-color="#B090D8"/>
+          <stop offset="100%" stop-color="#6A38A0"/>
+        </linearGradient>
+        <linearGradient id="bandGrad" x1="10" y1="55" x2="110" y2="55" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#8B6AAE"/>
+          <stop offset="50%" stop-color="#E8C870"/>
+          <stop offset="100%" stop-color="#8B6AAE"/>
+        </linearGradient>
+        <radialGradient id="gemViolet" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#D8B0F8"/>
+          <stop offset="100%" stop-color="#7030B8"/>
+        </radialGradient>
+        <radialGradient id="gemGold" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#F4E090"/>
+          <stop offset="100%" stop-color="#B8860B"/>
+        </radialGradient>
+      </defs>
+    </svg>
+
+    <div class="invite-label-top">Seu convite para o grande dia chegou</div>
+    <div class="name-sophia">Sophia</div>
+    <div class="anos-label">✦ &nbsp; 15 Anos &nbsp; ✦</div>
+    <div class="presence-line">Conto com a sua presença 💕</div>
+    <div class="divider-ornament">
+      <span></span><i>✦ ✦ ✦</i><span></span>
+    </div>
+  </div>
+
+  <div class="card">
+
+    <!-- Event Info -->
+    <div class="event-info">
+
+      <div class="info-row">
+        <div class="info-icon">📅</div>
+        <div class="info-content">
+          <div class="info-label">Data &amp; Horário</div>
+          <div class="date-line">📅 28.08.2026 · Sexta-feira</div>
+          <div class="time-line">🕢 20:30</div>
+          <a class="calendar-link"
+             href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Anivers%C3%A1rio+Sophia+-+15+Anos&dates=20260828T203000/20260829T020000&details=Festa+de+15+anos+da+Sophia+no+Buffet+Imperial+Mandior%C3%A9.+Dress+Code%3A+Social+%2F+Esporte+fino.&location=Rua+Mandior%C3%A9%2C+550+-+Vila+Formosa%2C+S%C3%A3o+Paulo+-+SP"
+             target="_blank" rel="noopener">
+            🗓 Adicionar à agenda
+          </a>
+        </div>
+      </div>
+
+      <div class="info-row">
+        <div class="info-icon">📍</div>
+        <div class="info-content">
+          <div class="info-label">Local</div>
+          <div class="info-value">
+            <a href="https://www.google.com/maps/search/Buffet+Imperial+Mandioré+Rua+Mandioré+550+Vila+Formosa+São+Paulo" target="_blank" rel="noopener">Buffet Imperial Mandioré</a><br>
+            <span style="font-size:0.9rem;color:var(--text-mid)">Rua Mandioré, 550 — Vila Formosa, São Paulo</span>
+          </div>
+          <div class="map-links">
+            <a class="map-btn" href="https://www.google.com/maps/search/Rua+Mandioré+550+Vila+Formosa+São+Paulo" target="_blank" rel="noopener">🗺 Google Maps</a>
+            <a class="map-btn" href="https://waze.com/ul?q=Rua%20Mandior%C3%A9%20550%20Vila%20Formosa%20S%C3%A3o%20Paulo" target="_blank" rel="noopener">🔵 Waze</a>
+            <a class="map-btn" href="uber://?action=setPickup&dropoff[latitude]=-23.5489&dropoff[longitude]=-46.5426&dropoff[nickname]=Buffet+Imperial+Mandioré&dropoff[formatted_address]=Rua+Mandioré+550+Vila+Formosa+São+Paulo" target="_blank" rel="noopener">🚗 Uber</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Dress Code -->
+    <div class="dress-section">
+
+      <div class="dress-header">
+        <div class="dress-title">
+          Dress Code
+          <span style="flex:1;height:1px;background:linear-gradient(90deg,var(--border-light),transparent);display:block"></span>
+        </div>
+      </div>
+      </div>
+
+      <div class="dress-intro">
+        Caro convidado, cada detalhe desta noite foi pensado com muito carinho para fazê-la ainda mais especial, e para isso contamos com a colaboração de todos, para que possamos viver esse momento tão especial com tranquilidade. Seguem algumas dicas:
+      </div>
+
+      <div class="dress-item">✅ <strong>Traje escolhido</strong> — Social / Esporte fino</div>
+
+      <div class="forbidden-label">🚫 Não permitido</div>
+      <div class="dress-item">🚫 Moletom</div>
+      <div class="dress-item">🚫 Shorts / Bermuda</div>
+      <div class="dress-item">🚫 Camiseta de time / Regata</div>
+
+      <div class="forbidden-label" style="margin-top:0.9rem">🎨 Cores reservadas à aniversariante</div>
+      <div class="swatch-note">As cores abaixo foram escolhidas para uso exclusivo da aniversariante e devem ser evitadas pelos convidados:</div>
+
+      <div class="color-swatches" style="margin-top:0.7rem">
+        <div class="swatch"><div class="swatch-circle" style="background:#D7BDE2"></div></div>
+        <div class="swatch"><div class="swatch-circle" style="background:#C8A0D8"></div></div>
+        <div class="swatch"><div class="swatch-circle" style="background:#A569BD"></div></div>
+        <div class="swatch"><div class="swatch-circle" style="background:#9B59B6"></div></div>
+        <div class="swatch"><div class="swatch-circle" style="background:#884EA0"></div></div>
+        <div class="swatch"><div class="swatch-circle" style="background:#7D3C98"></div></div>
+        <div class="swatch"><div class="swatch-circle" style="background:#76448A"></div></div>
+        <div class="swatch"><div class="swatch-circle" style="background:#4A235A"></div></div>
+      </div>
+
+      <div class="dress-tagline">Vista seu melhor look e venha comemorar comigo!</div>
+    </div>
+
+    <!-- Form -->
+    <div class="form-section">
+
+      <div class="blocked-screen" id="blocked-screen">
+        <div style="font-size:2rem;margin-bottom:1rem">💌</div>
+        <h2>Presença já confirmada</h2>
+        <p style="margin-top:0.5rem">Sua confirmação já foi registrada.<br>Aguardamos você com muito carinho! ♥</p>
+      </div>
+
+      <div class="success-screen" id="success-screen">
+        <div class="success-icon">👑</div>
+        <h2>Te esperamos!</h2>
+        <p class="sub">Presença confirmada com sucesso.<br>Nos vemos no dia 28 de agosto! ♥</p>
+        <div class="confirm-detail" id="confirm-detail"></div>
+      </div>
+
+      <div id="form-main">
+        <div class="attention-box">
+          <span class="att-icon">⚠️</span>
+          <p><strong>Atenção:</strong> este formulário é válido para <strong>um único preenchimento</strong>. Confirme seus dados com cuidado antes de enviar.</p>
+        </div>
+
+        <div class="form-title">Confirme sua presença</div>
+
+        <div class="field-row">
+          <div>
+            <label for="nome">Nome <span class="req">*</span></label>
+            <input type="text" id="nome" placeholder="Seu nome" autocomplete="given-name"/>
+            <div class="err-msg" id="err-nome">Informe seu nome.</div>
+          </div>
+          <div>
+            <label for="sobrenome">Sobrenome <span class="req">*</span></label>
+            <input type="text" id="sobrenome" placeholder="Seu sobrenome" autocomplete="family-name"/>
+            <div class="err-msg" id="err-sobrenome">Informe seu sobrenome.</div>
+          </div>
+        </div>
+
+        <button class="submit-btn" onclick="confirmar()">Confirmar Presença</button>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      Um dia inesquecível merece ser lembrado para sempre &nbsp;✦&nbsp; Convite particular
+    </div>
+
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'sophia15_confirmed_v3';
+const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyvHZJhktXM4dG3oUR6wHideDgE662AgDN2UKmGPkAPAnExVr9x49IUviyhDKvp93P9/exec';
+
+window.addEventListener('DOMContentLoaded', function(){
+  if(localStorage.getItem(STORAGE_KEY)){
+    document.getElementById('form-main').style.display='none';
+    document.getElementById('blocked-screen').classList.add('visible');
+  }
+});
+
+function showErr(id,s){ document.getElementById(id).style.display = s?'block':'none'; }
+function markErr(id,h){ document.getElementById(id).classList.toggle('err',h); }
+
+async function confirmar(){
+  const nome      = document.getElementById('nome').value.trim();
+  const sobrenome = document.getElementById('sobrenome').value.trim();
+
+  let ok = true;
+  if(!nome)      { showErr('err-nome',true);      markErr('nome',true);      ok=false; } else { showErr('err-nome',false);      markErr('nome',false); }
+  if(!sobrenome) { showErr('err-sobrenome',true); markErr('sobrenome',true); ok=false; } else { showErr('err-sobrenome',false); markErr('sobrenome',false); }
+  if(!ok) return;
+
+  const payload = {
+    nome, sobrenome,
+    timestamp: new Date().toLocaleString('pt-BR')
+  };
+
+  if(SHEETS_URL){
+    try{ await fetch(SHEETS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); }
+    catch(e){ console.warn('Sheets error:',e); }
+  }
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({...payload, ts: Date.now()}));
+
+  const html = `<p><strong>Nome:</strong> ${nome} ${sobrenome}</p>`;
+  document.getElementById('confirm-detail').innerHTML = html;
+  document.getElementById('form-main').style.display='none';
+  document.getElementById('success-screen').classList.add('visible');
+}
+</script>
+</body>
+</html>
