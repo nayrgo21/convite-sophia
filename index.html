@@ -45,6 +45,121 @@ body{
   100%{transform:translateY(105vh) rotate(420deg) scale(1.1);opacity:0}
 }
 @keyframes glow{0%,100%{filter:drop-shadow(0 0 4px rgba(201,150,60,0.4))}50%{filter:drop-shadow(0 0 10px rgba(201,150,60,0.7))}}
+@keyframes envelopeFloat{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(1deg)}}
+@keyframes flapOpen{0%{transform:rotateX(0deg)}100%{transform:rotateX(-180deg)}}
+@keyframes cardRise{0%{opacity:0;transform:translateY(40px) scale(0.95)}100%{opacity:1;transform:translateY(-30px) scale(1)}}
+@keyframes envelopeFade{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(0.8)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+@keyframes shimmerGold{0%{background-position:200% center}100%{background-position:-200% center}}
+
+/* ── ENVELOPE SCREEN ── */
+#envelope-screen{
+  position:fixed;inset:0;z-index:100;
+  background:linear-gradient(150deg,#EAD8F4 0%,#F4EEF9 40%,#EAD8F4 70%,#D8C0EC 100%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  cursor:pointer;
+  transition:opacity 0.8s ease;
+}
+#envelope-screen.hide{opacity:0;pointer-events:none}
+
+.env-label{
+  font-family:'Cinzel',serif;
+  font-size:0.6rem;font-weight:600;letter-spacing:0.35em;text-transform:uppercase;
+  color:#5C3A08;
+  text-shadow:0 1px 6px rgba(255,255,255,0.8);
+  margin-bottom:1.8rem;
+  animation:pulse 2.5s ease-in-out infinite;
+}
+
+.envelope-wrap{
+  position:relative;
+  width:280px;height:196px;
+  animation:envelopeFloat 3s ease-in-out infinite;
+  filter:drop-shadow(0 16px 40px rgba(90,50,130,0.25));
+}
+.envelope-wrap.opening .flap{animation:flapOpen 0.7s ease forwards}
+.envelope-wrap.opening{animation:none}
+
+/* Envelope body */
+.env-body{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,#E8D8F4,#D4C0E8);
+  border-radius:4px 4px 8px 8px;
+  border:1.5px solid rgba(184,134,11,0.3);
+  overflow:hidden;
+}
+
+/* Bottom triangle */
+.env-bottom{
+  position:absolute;bottom:0;left:0;right:0;height:100%;
+  background:linear-gradient(175deg,#DCC8F0 0%,#C8B0E0 100%);
+  clip-path:polygon(0% 100%, 50% 48%, 100% 100%);
+}
+
+/* Side triangles */
+.env-left{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  background:linear-gradient(135deg,#D0BCEC,#C0A8DC);
+  clip-path:polygon(0% 0%, 0% 100%, 50% 48%);
+}
+.env-right{
+  position:absolute;top:0;right:0;width:100%;height:100%;
+  background:linear-gradient(225deg,#CEB8E8,#BCA4D8);
+  clip-path:polygon(100% 0%, 50% 48%, 100% 100%);
+}
+
+/* Flap (top triangle) */
+.flap{
+  position:absolute;top:0;left:0;width:100%;height:100%;
+  background:linear-gradient(160deg,#D8C4F0,#C8B0E4);
+  clip-path:polygon(0% 0%, 50% 52%, 100% 0%);
+  transform-origin:top center;
+  transform-style:preserve-3d;
+  z-index:3;
+  border-bottom:1px solid rgba(184,134,11,0.25);
+}
+
+/* Gold seal */
+.seal{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:52px;height:52px;
+  background:radial-gradient(circle,#F0D860,#C9963C,#8B6010);
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,0.4);
+  box-shadow:0 2px 12px rgba(184,134,11,0.5),inset 0 1px 3px rgba(255,255,255,0.3);
+  display:flex;align-items:center;justify-content:center;
+  z-index:4;
+  font-size:1.4rem;
+}
+
+/* Gold ribbon bow on top */
+.bow{
+  position:absolute;top:-18px;left:50%;transform:translateX(-50%);
+  z-index:5;font-size:2rem;
+  filter:drop-shadow(0 2px 4px rgba(184,134,11,0.4));
+  animation:glow 2s ease-in-out infinite;
+}
+
+/* Gold border lines on envelope */
+.env-border{
+  position:absolute;inset:6px;
+  border:1px solid rgba(184,134,11,0.25);
+  border-radius:3px 3px 6px 6px;
+  pointer-events:none;z-index:2;
+}
+
+.env-hint{
+  margin-top:2rem;
+  font-family:'Great Vibes',cursive;
+  font-size:1.3rem;color:#5C3808;
+  text-shadow:0 1px 6px rgba(255,255,255,0.8);
+  animation:pulse 2s ease-in-out infinite;
+}
+
+/* Main content hidden initially */
+#main-content{display:none}
 
 .sparkles{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
 .sparkle{
@@ -329,6 +444,26 @@ input.err{border-color:#c0392b}
 </head>
 <body>
 
+<!-- ENVELOPE SCREEN -->
+<div id="envelope-screen" onclick="openEnvelope()">
+  <div class="env-label">✦ &nbsp; Você recebeu um convite especial &nbsp; ✦</div>
+  <div class="envelope-wrap" id="env-wrap">
+    <div class="bow">🎀</div>
+    <div class="env-body">
+      <div class="env-left"></div>
+      <div class="env-right"></div>
+      <div class="env-bottom"></div>
+      <div class="env-border"></div>
+      <div class="seal">👑</div>
+      <div class="flap"></div>
+    </div>
+  </div>
+  <div class="env-hint">Toque para abrir 💜</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="main-content">
+
 <div class="sparkles" aria-hidden="true">
   <div class="sparkle" style="left:7%;top:10%;--dur:2.6s;--del:0s"></div>
   <div class="sparkle" style="left:93%;top:8%;--dur:3.4s;--del:.6s"></div>
@@ -519,6 +654,25 @@ input.err{border-color:#c0392b}
 
   </div>
 </div>
+
+</div><!-- /main-content -->
+
+<script>
+function openEnvelope(){
+  const wrap = document.getElementById('env-wrap');
+  const screen = document.getElementById('envelope-screen');
+  wrap.classList.add('opening');
+  setTimeout(()=>{
+    screen.classList.add('hide');
+    setTimeout(()=>{
+      screen.style.display='none';
+      const main = document.getElementById('main-content');
+      main.style.display='block';
+      main.style.animation='fadeSlideIn 0.8s ease both';
+    },800);
+  },700);
+}
+</script>
 
 <script>
 const STORAGE_KEY = 'sophia15_confirmed_v3';
