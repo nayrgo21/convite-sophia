@@ -697,14 +697,35 @@ async function confirmar(){
   if(!sobrenome) { showErr('err-sobrenome',true); markErr('sobrenome',true); ok=false; } else { showErr('err-sobrenome',false); markErr('sobrenome',false); }
   if(!ok) return;
 
+  // Disable button while sending
+  const btn = document.querySelector('.submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
   const payload = {
     nome, sobrenome,
     timestamp: new Date().toLocaleString('pt-BR')
   };
 
   if(SHEETS_URL){
-    try{ await fetch(SHEETS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}); }
-    catch(e){ console.warn('Sheets error:',e); }
+    try{
+      const res = await fetch(SHEETS_URL, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(payload)
+      });
+      const json = await res.json();
+
+      if(json.status === 'duplicate'){
+        // Já confirmado na planilha
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({...payload, ts: Date.now()}));
+        document.getElementById('form-main').style.display='none';
+        document.getElementById('blocked-screen').classList.add('visible');
+        return;
+      }
+    } catch(e){
+      console.warn('Sheets error:',e);
+    }
   }
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify({...payload, ts: Date.now()}));
